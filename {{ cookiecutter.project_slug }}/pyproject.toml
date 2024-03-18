@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["{{ cookiecutter.package_name }}/*"]
+exclude = ["tests/*"]
+
+[tool.setuptools_scm]
+write_to = "{{ cookiecutter.package_name }}/__version__.py"
+
+[project]
+name = "{{ cookiecutter.package_name }}"
+description = "{{ cookiecutter.description }}"
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["one", "two"]
+license = {text = "BSD 3-Clause License"}
+dynamic = ["version"]
+classifiers = [
+    "Framework :: Typer",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "typer[all]"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest"
+]
+
+[project.scripts]
+{{  cookiecutter.exec_name }} = "{{ cookiecutter.package_name }}.cli:app"
